@@ -10,6 +10,8 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.json());
+
 const allowedOrigins = [
   'https://symposiumcyber-nu.vercel.app',
   'http://localhost:5173',
