@@ -10,8 +10,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
-app.use(express.json());
+const allowedOrigin = (process.env.CLIENT_URL || 'http://localhost:5173').trim();
+app.use(cors({ origin: allowedOrigin }));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
