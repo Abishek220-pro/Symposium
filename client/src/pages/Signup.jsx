@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import GradientButton from '../components/GradientButton'
 import { useAuth } from '../context/AuthContext'
 
@@ -50,7 +50,19 @@ export default function Signup() {
             <option value="4th year">4th year</option>
           </select>
           <div className="md:col-span-2">
-            {error ? <p className="mb-3 text-sm text-rose-400">{error}</p> : null}
+            {error ? (
+              <p className="mb-3 text-sm text-rose-400">
+                {error}
+                {error.toLowerCase().includes('already registered') ? (
+                  <>
+                    {' '}
+                    <Link to="/login" className="font-semibold text-cyan-300 underline hover:text-cyan-200">
+                      Log in instead
+                    </Link>
+                  </>
+                ) : null}
+              </p>
+            ) : null}
             <GradientButton type="submit">Create account</GradientButton>
           </div>
         </form>
