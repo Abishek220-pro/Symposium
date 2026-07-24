@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import GradientButton from '../components/GradientButton'
 import { useAuth } from '../context/AuthContext'
 
@@ -30,6 +30,12 @@ export default function Login() {
           <input type="password" className="w-full rounded-xl border border-[#2a2a38] bg-[#1c1c28] px-4 py-3 text-white outline-none" placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
           {error ? <p className="text-sm text-rose-400">{error}</p> : null}
           <GradientButton type="submit">Log in</GradientButton>
+          <p className="text-center text-sm text-[#9a9aa8]">
+            Don't have an account?{' '}
+            <Link to="/signup" className="font-semibold text-cyan-300 underline hover:text-cyan-200">
+              Register
+            </Link>
+          </p>
         </form>
       </div>
     </div>

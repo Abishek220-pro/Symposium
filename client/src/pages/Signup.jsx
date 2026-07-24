@@ -64,6 +64,12 @@ export default function Signup() {
               </p>
             ) : null}
             <GradientButton type="submit">Create account</GradientButton>
+            <p className="mt-4 text-center text-sm text-[#9a9aa8]">
+              Already have an account?{' '}
+              <Link to="/login" className="font-semibold text-cyan-300 underline hover:text-cyan-200">
+                Login
+              </Link>
+            </p>
           </div>
         </form>
       </div>
