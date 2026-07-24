@@ -10,8 +10,21 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigin = (process.env.CLIENT_URL || 'http://localhost:5173').trim();
-app.use(cors({ origin: allowedOrigin }));
+const allowedOrigins = [
+  'https://symposiumcyber-nu.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5174',
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin.trim())) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+}));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
